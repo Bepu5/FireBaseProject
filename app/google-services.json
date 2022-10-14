@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "720899099562",
+    "project_id": "missatgeria-serveis",
+    "storage_bucket": "missatgeria-serveis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720899099562:android:1f06e7c355b3956bd439d3",
+        "android_client_info": {
+          "package_name": "com.example.firebaseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720899099562-peav37hu986hi9a49minmbqj3r5m6oid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoL8mhZeoDrqh1BZ2InAnc9pDNjvSJqqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720899099562-peav37hu986hi9a49minmbqj3r5m6oid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
