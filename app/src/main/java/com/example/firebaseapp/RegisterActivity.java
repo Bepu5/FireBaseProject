@@ -19,6 +19,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView veteris, registerUser;
@@ -107,6 +110,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                         public void onComplete(@NonNull Task<Void> task) { //We look if user has been inserted in DataBase
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                             } else {
                                                 Toast.makeText(RegisterActivity.this, "Failed to register, try again!", Toast.LENGTH_LONG).show();
                                             }
