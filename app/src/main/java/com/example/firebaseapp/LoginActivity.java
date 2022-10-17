@@ -81,20 +81,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if(task.isSuccessful()){ //redirect to home
+                if (task.isSuccessful()) { //redirect to home
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if(user.isEmailVerified()){
-                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                    } else{
-                        user.sendEmailVerification();
-                        Toast.makeText(LoginActivity.this,"Check your email to verify your account", Toast.LENGTH_LONG).show();
+                    if (user.isEmailVerified()) {
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Check your email to verify your account", Toast.LENGTH_LONG).show();
                     }
-
-                }else{
-                    Toast.makeText(LoginActivity.this,"Failed to login! Please check your credentials", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
     }
 }
