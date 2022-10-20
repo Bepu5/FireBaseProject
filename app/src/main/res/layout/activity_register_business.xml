@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterBusinessActivity">
 
     <TextView
         android:id="@+id/veteris"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/registerEmail"
+        android:id="@+id/registerBusinessEmail"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -28,10 +28,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/registerBusinessUsername" />
 
     <EditText
-        android:id="@+id/registerUsername"
+        android:id="@+id/registerBusinessUsername"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
@@ -44,7 +44,46 @@
         app:layout_constraintTop_toBottomOf="@+id/veteris" />
 
     <EditText
-        android:id="@+id/registerPassword"
+        android:id="@+id/registerCountry"
+        android:layout_width="324dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Country"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerBusinessPassword" />
+
+    <EditText
+        android:id="@+id/registerPhoneNumber"
+        android:layout_width="324dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="Phone Number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerPostalCode" />
+
+    <EditText
+        android:id="@+id/registerPostalCode"
+        android:layout_width="324dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="Postal Code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerCountry" />
+
+    <EditText
+        android:id="@+id/registerBusinessPassword"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -54,10 +93,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/registerBusinessEmail" />
 
     <Button
-        android:id="@+id/registerUser"
+        android:id="@+id/registerBusinessUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -65,6 +104,6 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/registerPhoneNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,9 +22,9 @@ import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView register;
     private EditText editEmail, editPassword;
-    private Button logIn;
+    private Button logIn, register;
+    private TextView createBusinessUser;
 
     private FirebaseAuth mAuth;
 
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        register = (TextView) findViewById(R.id.register);
+        register = (Button) findViewById(R.id.register);
         register.setOnClickListener(this); //Listener for onClick function
 
         logIn = (Button) findViewById(R.id.loginUser);
@@ -41,6 +41,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         editEmail = (EditText) findViewById(R.id.email);
         editPassword = (EditText) findViewById(R.id.password);
+
+        createBusinessUser = (TextView) findViewById(R.id.createBusinessAcc);
+        createBusinessUser.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -54,6 +57,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.loginUser:
                 loginUser();
                 break;
+            case R.id.createBusinessAcc:
+                startActivity(new Intent(this,RegisterBusinessActivity.class));
         }
     }
 
