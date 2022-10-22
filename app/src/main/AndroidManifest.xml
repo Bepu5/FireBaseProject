@@ -47,6 +47,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".ui.settings.SettingsFragment"
+            android:theme="@style/PreferencesTheme"
+            android:exported="false">
+        </activity>
+
+
     </application>
 
 </manifest>
