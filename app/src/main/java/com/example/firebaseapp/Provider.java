@@ -1,6 +1,7 @@
 package com.example.firebaseapp;
 
 public class Provider {
+    public String id;
     public String username, email, phone, country, postalCode, profilePicture, dni ,gender, created, updated, description;
     public int balance;
 
@@ -8,7 +9,8 @@ public class Provider {
 
     }
 
-    public Provider(String username, String email, String phone, String country, String postalCode){
+    public Provider(String id, String username, String email, String phone, String country, String postalCode){
+        this.id = id;
         this.username = username;
         this.email = email;
         this.phone = phone;
