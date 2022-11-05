@@ -6,13 +6,13 @@
         app:icon="@drawable/ic_baseline_account_circle_24"
         app:title="@string/messages_header">
 
-        <EditTextPreference
-            app:key="signature"
+        <Preference
+            app:key="userProfile"
             app:title="@string/signature_title"
             app:useSimpleSummaryProvider="true" />
 
         <Preference
-            app:key="toastMsg"
+            app:key="logoutButton"
             app:title="Logout" />
 
     </PreferenceCategory>
