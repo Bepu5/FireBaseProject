@@ -6,59 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ListView
+        android:id="@+id/providerList"
+        android:layout_width="409dp"
+        android:layout_height="267dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tv_signature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Signature: "
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/tv_reply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Default reply:"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/tv_sync"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Sync: "
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/tv_notifications"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Notifications:"
-            android:textColor="@android:color/black" />
-
-        <ProgressBar
-            android:id="@+id/pb_volume"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:max="100"
-
-            android:textColor="@android:color/black" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--<TextView
         android:id="@+id/text_home"
