@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
+import com.example.firebaseapp.ChangeEmail;
+import com.example.firebaseapp.ChangePassword;
 import com.example.firebaseapp.LoginActivity;
 import com.example.firebaseapp.MainActivity;
 import com.example.firebaseapp.R;
@@ -46,7 +48,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             userProfile.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(@NonNull Preference preference) {
-                    startActivity(new Intent(getActivity(), UserProfileSettingsActivity.class));
+                    startActivity(new Intent(getActivity(), ChangeEmail.class));
                     return true;
                 }
             });
