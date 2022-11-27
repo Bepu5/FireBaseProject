@@ -8,5 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="settingsbackground">#071438</color>
+    <color name="settingsbackground">#B9E0FF</color>
+    <color name="buttons">#16437f</color>
+    <color name="buttonsPressed">#B9E0FF</color>
 </resources>
