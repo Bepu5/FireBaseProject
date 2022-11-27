@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,10 +20,11 @@ import java.util.UUID;
 
 public class ChatActivity extends AppCompatActivity {
     ActivityChatBinding binding;
-    String receiverId;
+    String senderId, receiverId;
     String senderRoom, receiverRoom;
-    DatabaseReference databaseReferenceSender, databaseReferenceReceiver;
+    DatabaseReference databaseReferenceSender, databaseReferenceReceiver, databaseChatSender;
     MessageAdapter messageAdapter;
+    String chatid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,24 +33,45 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         setContentView(binding.getRoot());
 
+        //FirebaseAuth.getInstance().getUid()).getValue(Provider.class)
+        senderId = FirebaseAuth.getInstance().getUid();
         receiverId=getIntent().getStringExtra("id");
-        senderRoom = FirebaseAuth.getInstance().getUid() + receiverId;
-        receiverRoom = receiverId + FirebaseAuth.getInstance().getUid();
+
 
         messageAdapter = new MessageAdapter(this);
         binding.recycler.setAdapter(messageAdapter);
         binding.recycler.setLayoutManager(new LinearLayoutManager(this));
 
-        databaseReferenceSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats").child(senderRoom);
-        databaseReferenceReceiver = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats").child(receiverRoom);
+        databaseChatSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats");
 
-        databaseReferenceSender.addValueEventListener(new ValueEventListener() {
+        databaseReferenceReceiver = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Provider").child(receiverId).child("chat");
+
+
+        databaseReferenceSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Provider").child(FirebaseAuth.getInstance().getUid()).child("chat");
+        chatid = databaseReferenceSender.push().getKey();
+        databaseReferenceSender.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                messageAdapter.clear();
-                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Message message = dataSnapshot.getValue(Message.class);
-                    messageAdapter.add(message);
+            public void onDataChange(DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()) {
+                    if(receiverId.equals(snapshot.child(dataSnapshot.getKey()).getKey())){
+                        Chat value = dataSnapshot.getValue(Chat.class);
+                        chatid = value.getChatId();
+                        databaseChatSender = databaseChatSender.child(value.getChatId());
+                        databaseChatSender.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                messageAdapter.clear();
+                                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                                    Message message = dataSnapshot.getValue(Message.class);
+                                    messageAdapter.add(message);
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
                 }
             }
 
@@ -70,11 +93,16 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessage(String message){
-        String key = databaseReferenceSender.push().getKey();
-        Message messageModel = new Message(key, FirebaseAuth.getInstance().getUid(), message);
-
+        //Create Message on Chat
+        databaseChatSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats").child(chatid);
+        String id_message = databaseChatSender.push().getKey();
+        Message messageModel = new Message(id_message, FirebaseAuth.getInstance().getUid(), message);
         messageAdapter.add(messageModel);
-        databaseReferenceSender.child(key).setValue(messageModel);
-        databaseReferenceReceiver.child(key).setValue(messageModel);
+        databaseChatSender.child(id_message).setValue(messageModel);
+
+        Chat chatSender = new Chat(chatid, receiverId);
+        Chat chatReceiver = new Chat(chatid, senderId);
+        databaseReferenceSender.child(receiverId).setValue(chatSender);
+        databaseReferenceReceiver.child(senderId).setValue(chatReceiver);
     }
 }
