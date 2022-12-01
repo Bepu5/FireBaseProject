@@ -18,6 +18,7 @@ import androidx.preference.PreferenceManager;
 import com.example.firebaseapp.ChatActivity;
 import com.example.firebaseapp.Provider;
 import com.example.firebaseapp.R;
+import com.example.firebaseapp.User;
 import com.example.firebaseapp.databinding.FragmentNotificationsBinding;
 import com.example.firebaseapp.ui.home.HomeViewModel;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -32,7 +33,7 @@ public class NotificationsFragmentProvider extends Fragment {
     private TextView sign;
     //private EditTextPreference tv_signature;
 
-    ArrayList<Provider> arrayList;
+    ArrayList<User> arrayList;
     ListView list;
 
     FirebaseListAdapter adapter;
@@ -50,7 +51,7 @@ public class NotificationsFragmentProvider extends Fragment {
         //homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         list = root.findViewById(R.id.providerListNotifications);
-        arrayList = new ArrayList<Provider>();
+        arrayList = new ArrayList<User>();
 
         initializeListView();
 
@@ -58,29 +59,28 @@ public class NotificationsFragmentProvider extends Fragment {
     }
 
     private void initializeListView() {
-        Query query = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Provider");
+        Query query = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
         //Log in as an User look for Providers
-        FirebaseListOptions<Provider> options = new FirebaseListOptions.Builder<Provider>()
+        FirebaseListOptions<User> options = new FirebaseListOptions.Builder<User>()
                 .setLayout(R.layout.list_view_providers)
-                .setQuery(query,Provider.class)
+                .setQuery(query,User.class)
                 .build();
 
         //Create Adapter for the diferent options
         adapter = new FirebaseListAdapter(options) {
             @Override
             protected void populateView(@NonNull View v, @NonNull Object model, int position) {
-                TextView providerUsername = v.findViewById(R.id.usernameProvider);
-                TextView providerEmail = v.findViewById(R.id.shortdescrProvider);
+                TextView userUsername = v.findViewById(R.id.usernameProvider);
+                TextView userEmail = v.findViewById(R.id.shortdescrProvider);
 
-                Provider provider = (Provider) model;
-                providerUsername.setText(provider.getUsername().toString());
-                providerEmail.setText(provider.getEmail().toString());
+                User user = (User) model;
+                userUsername.setText(user.username.toString());
+                userEmail.setText(user.email.toString());
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(v.getContext(), ChatActivity.class);
                         intent.putExtra("id", adapter.getRef(position).getKey() + "");
-                        intent.putExtra("code", "1"); //Receiver is a Provider
                         startActivity(intent);
                     }
                 });

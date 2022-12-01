@@ -33,7 +33,6 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         setContentView(binding.getRoot());
 
-        //FirebaseAuth.getInstance().getUid()).getValue(Provider.class)
         senderId = FirebaseAuth.getInstance().getUid();
         receiverId=getIntent().getStringExtra("id");
 
@@ -44,10 +43,10 @@ public class ChatActivity extends AppCompatActivity {
 
         databaseChatSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats");
 
-        databaseReferenceReceiver = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Provider").child(receiverId).child("chat");
+        databaseReferenceReceiver = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users").child(receiverId).child("chat");
 
 
-        databaseReferenceSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Provider").child(FirebaseAuth.getInstance().getUid()).child("chat");
+        databaseReferenceSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users").child(FirebaseAuth.getInstance().getUid()).child("chat");
         chatid = databaseReferenceSender.push().getKey();
         databaseReferenceSender.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -96,7 +95,7 @@ public class ChatActivity extends AppCompatActivity {
         //Create Message on Chat
         databaseChatSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats").child(chatid);
         String id_message = databaseChatSender.push().getKey();
-        Message messageModel = new Message(id_message, FirebaseAuth.getInstance().getUid(), message);
+        Message messageModel = new Message(FirebaseAuth.getInstance().getUid(), message);
         messageAdapter.add(messageModel);
         databaseChatSender.child(id_message).setValue(messageModel);
 

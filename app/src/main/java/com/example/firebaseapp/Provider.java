@@ -1,10 +1,11 @@
 package com.example.firebaseapp;
 
+import java.lang.reflect.Array;
+
 public class Provider {
     public String id;
     public String username, email, phone, country, postalCode, profilePicture, dni ,gender, created, updated, description;
     public int balance;
-
     public Provider() {
 
     }
@@ -19,7 +20,6 @@ public class Provider {
         this.profilePicture = this.dni = this.gender = this.created = this.updated = description = "";
         this.balance = 0;
     }
-
 
     public String getUsername() {
         return username;
