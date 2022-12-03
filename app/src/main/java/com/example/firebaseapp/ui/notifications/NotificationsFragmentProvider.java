@@ -31,7 +31,6 @@ import java.util.ArrayList;
 public class NotificationsFragmentProvider extends Fragment {
     private FragmentNotificationsBinding binding;
     private TextView sign;
-    //private EditTextPreference tv_signature;
 
     ArrayList<User> arrayList;
     ListView list;
@@ -62,7 +61,7 @@ public class NotificationsFragmentProvider extends Fragment {
         Query query = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
         //Log in as an User look for Providers
         FirebaseListOptions<User> options = new FirebaseListOptions.Builder<User>()
-                .setLayout(R.layout.list_view_providers)
+                .setLayout(R.layout.user_row)
                 .setQuery(query,User.class)
                 .build();
 
@@ -70,12 +69,14 @@ public class NotificationsFragmentProvider extends Fragment {
         adapter = new FirebaseListAdapter(options) {
             @Override
             protected void populateView(@NonNull View v, @NonNull Object model, int position) {
-                TextView userUsername = v.findViewById(R.id.usernameProvider);
-                TextView userEmail = v.findViewById(R.id.shortdescrProvider);
+                TextView userUsername = v.findViewById(R.id.firstLine);
+                TextView userEmail = v.findViewById(R.id.secondLine);
 
                 User user = (User) model;
-                userUsername.setText(user.username.toString());
-                userEmail.setText(user.email.toString());
+                if(userUsername != null)
+                    userUsername.setText(user.username.toString());
+                if(userEmail != null)
+                    userEmail.setText(user.email.toString());
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -46,7 +46,7 @@ public class ChatActivity extends AppCompatActivity {
         databaseReferenceReceiver = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users").child(receiverId).child("chat");
 
 
-        databaseReferenceSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users").child(FirebaseAuth.getInstance().getUid()).child("chat");
+        databaseReferenceSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Provider").child(FirebaseAuth.getInstance().getUid()).child("chat");
         chatid = databaseReferenceSender.push().getKey();
         databaseReferenceSender.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
