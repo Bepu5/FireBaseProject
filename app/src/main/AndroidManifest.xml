@@ -70,6 +70,14 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".MainActivityProvider"
+            android:exported="false"
+            android:label="@string/title_activity_main_provider">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".RegisterActivity"
             android:exported="false">
             <meta-data

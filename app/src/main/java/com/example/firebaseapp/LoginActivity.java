@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 if(code == 0) { //User
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class)); //MainActivity
                                 } else if (code == 1){ //Provider
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class)); //MainActivity
+                                    startActivity(new Intent(LoginActivity.this, MainActivityProvider.class)); //MainActivity
                                 }
                             }
 
