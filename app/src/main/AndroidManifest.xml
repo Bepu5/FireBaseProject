@@ -20,6 +20,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ChangeEmailProvider"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ChangePassword"
             android:exported="false">
             <meta-data
@@ -28,6 +35,20 @@
         </activity>
         <activity
             android:name=".ProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ProfileProviderActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ProviderProfileSettingsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
