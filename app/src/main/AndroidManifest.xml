@@ -69,7 +69,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ChatActivity"
+            android:name=".ChatProviderActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ChatUserActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

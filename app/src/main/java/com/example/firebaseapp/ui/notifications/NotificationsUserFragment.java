@@ -15,10 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
-import com.example.firebaseapp.ChatActivity;
+import com.example.firebaseapp.ChatProviderActivity;
+import com.example.firebaseapp.ChatUserActivity;
 import com.example.firebaseapp.Provider;
 import com.example.firebaseapp.R;
-import com.example.firebaseapp.User;
 import com.example.firebaseapp.databinding.FragmentNotificationsBinding;
 import com.example.firebaseapp.ui.home.HomeViewModel;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -28,11 +28,11 @@ import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
-public class NotificationsFragmentProvider extends Fragment {
+public class NotificationsUserFragment extends Fragment {
     private FragmentNotificationsBinding binding;
     private TextView sign;
 
-    ArrayList<User> arrayList;
+    ArrayList<Provider> arrayList;
     ListView list;
 
     FirebaseListAdapter adapter;
@@ -46,11 +46,9 @@ public class NotificationsFragmentProvider extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //final TextView textView = binding.textHome;
-        //homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         list = root.findViewById(R.id.providerListNotifications);
-        arrayList = new ArrayList<User>();
+        arrayList = new ArrayList<Provider>();
 
         initializeListView();
 
@@ -58,29 +56,29 @@ public class NotificationsFragmentProvider extends Fragment {
     }
 
     private void initializeListView() {
-        Query query = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
+        Query query = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Provider");
         //Log in as an User look for Providers
-        FirebaseListOptions<User> options = new FirebaseListOptions.Builder<User>()
+        FirebaseListOptions<Provider> options = new FirebaseListOptions.Builder<Provider>()
                 .setLayout(R.layout.user_row)
-                .setQuery(query,User.class)
+                .setQuery(query,Provider.class)
                 .build();
 
         //Create Adapter for the diferent options
         adapter = new FirebaseListAdapter(options) {
             @Override
             protected void populateView(@NonNull View v, @NonNull Object model, int position) {
-                TextView userUsername = v.findViewById(R.id.firstLine);
-                TextView userEmail = v.findViewById(R.id.secondLine);
+                TextView providerUsername = v.findViewById(R.id.firstLine);
+                TextView providerEmail = v.findViewById(R.id.secondLine);
 
-                User user = (User) model;
-                if(userUsername != null)
-                    userUsername.setText(user.username.toString());
-                if(userEmail != null)
-                    userEmail.setText(user.email.toString());
+                Provider user = (Provider) model;
+                if(providerUsername != null)
+                    providerUsername.setText(user.username.toString());
+                if(providerEmail != null)
+                    providerEmail.setText(user.email.toString());
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(v.getContext(), ChatActivity.class);
+                        Intent intent = new Intent(v.getContext(), ChatUserActivity.class);
                         intent.putExtra("id", adapter.getRef(position).getKey() + "");
                         startActivity(intent);
                     }

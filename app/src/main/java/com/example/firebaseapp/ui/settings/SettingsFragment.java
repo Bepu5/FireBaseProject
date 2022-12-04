@@ -1,36 +1,23 @@
 package com.example.firebaseapp.ui.settings;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
 
-import com.example.firebaseapp.ChatActivity;
-import com.example.firebaseapp.LoginActivity;
-import com.example.firebaseapp.MainActivity;
 import com.example.firebaseapp.ProfileActivity;
 import com.example.firebaseapp.R;
 import com.example.firebaseapp.SettingsActivity;
 import com.example.firebaseapp.User;
-import com.example.firebaseapp.UserProfileSettingsActivity;
-import com.example.firebaseapp.databinding.FragmentDashboardBinding;
 import com.example.firebaseapp.databinding.FragmentSettingsBinding;
-import com.example.firebaseapp.ui.dashboard.DashboardViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

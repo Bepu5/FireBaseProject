@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,9 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.UUID;
-
-public class ChatActivity extends AppCompatActivity {
+public class ChatProviderActivity extends AppCompatActivity {
     ActivityChatBinding binding;
     String senderId, receiverId;
     String senderRoom, receiverRoom;
