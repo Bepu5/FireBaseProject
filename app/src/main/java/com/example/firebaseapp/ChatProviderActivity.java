@@ -92,7 +92,7 @@ public class ChatProviderActivity extends AppCompatActivity {
         //Create Message on Chat
         databaseChatSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats").child(chatid);
         String id_message = databaseChatSender.push().getKey();
-        Message messageModel = new Message(FirebaseAuth.getInstance().getUid(), message);
+        Message messageModel = new Message(FirebaseAuth.getInstance().getUid(), receiverId, message);
         messageAdapter.add(messageModel);
         databaseChatSender.child(id_message).setValue(messageModel);
 
