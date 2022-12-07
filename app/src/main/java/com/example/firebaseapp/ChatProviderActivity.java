@@ -49,7 +49,9 @@ public class ChatProviderActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()) {
-                    if(receiverId.equals(snapshot.child(dataSnapshot.getKey()).getKey())){
+
+                    Chat cha = dataSnapshot.getValue(Chat.class);
+                    if(receiverId.equals(cha.getUserName())){
                         Chat value = dataSnapshot.getValue(Chat.class);
                         chatid = value.getChatId();
                         databaseChatSender = databaseChatSender.child(value.getChatId());
@@ -90,15 +92,16 @@ public class ChatProviderActivity extends AppCompatActivity {
 
     private void sendMessage(String message){
         //Create Message on Chat
+        Chat chatSender = new Chat(chatid, receiverId);
+        databaseReferenceSender.child(chatid).setValue(chatSender);
+
         databaseChatSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats").child(chatid);
         String id_message = databaseChatSender.push().getKey();
         Message messageModel = new Message(FirebaseAuth.getInstance().getUid(), receiverId, message);
         messageAdapter.add(messageModel);
         databaseChatSender.child(id_message).setValue(messageModel);
 
-        Chat chatSender = new Chat(chatid, receiverId);
         Chat chatReceiver = new Chat(chatid, senderId);
-        databaseReferenceSender.child(receiverId).setValue(chatSender);
-        databaseReferenceReceiver.child(senderId).setValue(chatReceiver);
+        databaseReferenceReceiver.child(chatid).setValue(chatReceiver);
     }
 }
