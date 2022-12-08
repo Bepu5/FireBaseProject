@@ -135,7 +135,7 @@ public class RegisterBusinessActivity extends AppCompatActivity implements View.
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Provider provider = new Provider(FirebaseAuth.getInstance().getCurrentUser().getUid(), username,email,phone,country,postalCode);
+                            Provider provider = new Provider(username,email,phone,country,postalCode);
                             FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference()
                                     .child("Provider")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

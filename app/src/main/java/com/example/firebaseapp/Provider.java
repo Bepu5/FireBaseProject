@@ -3,15 +3,13 @@ package com.example.firebaseapp;
 import java.lang.reflect.Array;
 
 public class Provider {
-    public String id;
     public String username, email, phone, country, postalCode, profilePicture, dni ,gender, created, updated, description;
     public int balance;
     public Provider() {
 
     }
 
-    public Provider(String id, String username, String email, String phone, String country, String postalCode){
-        this.id = id;
+    public Provider(String username, String email, String phone, String country, String postalCode){
         this.username = username;
         this.email = email;
         this.phone = phone;

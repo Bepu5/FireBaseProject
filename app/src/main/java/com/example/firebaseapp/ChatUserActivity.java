@@ -18,7 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 public class ChatUserActivity extends AppCompatActivity {
     ActivityChatBinding binding;
     String senderId, receiverId;
-    String senderRoom, receiverRoom;
     DatabaseReference databaseReferenceSender, databaseReferenceReceiver, databaseChatSender;
     MessageAdapter messageAdapter;
     String chatid;
@@ -95,13 +94,13 @@ public class ChatUserActivity extends AppCompatActivity {
         Chat chatSender = new Chat(chatid, receiverId);
         databaseReferenceSender.child(chatid).setValue(chatSender);
 
-        databaseChatSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats").child(chatid);
-        String id_message = databaseChatSender.push().getKey();
-        Message messageModel = new Message(FirebaseAuth.getInstance().getUid(), senderId, message);
-        messageAdapter.add(messageModel);
-        databaseChatSender.child(id_message).setValue(messageModel);
-
         Chat chatReceiver = new Chat(chatid, senderId);
         databaseReferenceReceiver.child(chatid).setValue(chatReceiver);
+
+        databaseChatSender = FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Chats").child(chatid);
+        String id_message = databaseChatSender.push().getKey();
+        Message messageModel = new Message(FirebaseAuth.getInstance().getUid(), receiverId, message);
+        messageAdapter.add(messageModel);
+        databaseChatSender.child(id_message).setValue(messageModel);
     }
 }

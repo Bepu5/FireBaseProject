@@ -76,6 +76,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             registerUsername.requestFocus();
             return;
         }
+        if (username.length() < 4) {
+            registerUsername.setError("Username to short (must be more than 3 characters)");
+            registerUsername.requestFocus();
+            return;
+        }
         if (email.isEmpty()) {
             registerEmail.setError("Email is required");
             registerEmail.requestFocus();
@@ -102,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(FirebaseAuth.getInstance().getCurrentUser().getUid(), username, email, "");
+                            User user = new User(username, email, "");
                             FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference()
                                     .child("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
