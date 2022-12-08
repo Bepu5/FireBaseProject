@@ -30,7 +30,6 @@
         android:src="@drawable/ic_baseline_settings_24"
         app:layout_constraintBottom_toTopOf="@+id/profile_fragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/userName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

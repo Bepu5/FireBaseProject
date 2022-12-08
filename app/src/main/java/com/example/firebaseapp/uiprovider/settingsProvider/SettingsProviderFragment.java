@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.firebaseapp.ProfileProviderActivity;
 import com.example.firebaseapp.Provider;
 import com.example.firebaseapp.R;
@@ -72,6 +73,7 @@ public class SettingsProviderFragment extends Fragment {
         userID = user.getUid();
 
         final TextView username = root.findViewById(R.id.userName);
+        final ImageView profilePicture = root.findViewById(R.id.profile_fragment);
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -79,6 +81,7 @@ public class SettingsProviderFragment extends Fragment {
                 Provider providerProfile = snapshot.getValue(Provider.class);
                 if(providerProfile != null){
                     String username2 = providerProfile.username;
+                    Glide.with(getContext()).load(providerProfile.profile_picture).error(R.drawable.prof_settings).placeholder(R.drawable.prof_settings).into(profilePicture);
 
                     username.setText(username2);
                 }

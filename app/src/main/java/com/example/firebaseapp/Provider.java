@@ -3,7 +3,7 @@ package com.example.firebaseapp;
 import java.lang.reflect.Array;
 
 public class Provider {
-    public String username, email, phone, country, postalCode, profilePicture, dni ,gender, created, updated, description;
+    public String username, email, phone, country, postalCode, profile_picture, dni ,gender, created, updated, description;
     public int balance;
     public Provider() {
 
@@ -15,7 +15,7 @@ public class Provider {
         this.phone = phone;
         this.country = country;
         this.postalCode = postalCode;
-        this.profilePicture = this.dni = this.gender = this.created = this.updated = description = "";
+        this.profile_picture = this.dni = this.gender = this.created = this.updated = description = "";
         this.balance = 0;
     }
 
