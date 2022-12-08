@@ -84,6 +84,11 @@ public class RegisterBusinessActivity extends AppCompatActivity implements View.
             registerBusinessUsername.requestFocus();
             return;
         }
+        if (username.length() < 4) {
+            registerBusinessUsername.setError("Username to short (must be more than 3 characters)");
+            registerBusinessUsername.requestFocus();
+            return;
+        }
         if (email.isEmpty()) {
             registerBusinessEmail.setError("Email is required");
             registerBusinessEmail.requestFocus();
@@ -148,12 +153,14 @@ public class RegisterBusinessActivity extends AppCompatActivity implements View.
                                                 user.sendEmailVerification();
                                                 startActivity(new Intent(RegisterBusinessActivity.this, LoginActivity.class));
                                             } else {
+                                                System.out.println("HOLA2: " + task.getException());
                                                 Toast.makeText(RegisterBusinessActivity.this, "Failed to register, try again!", Toast.LENGTH_LONG).show();
                                             }
                                         }
                                     });
                         } else {
-                            Toast.makeText(RegisterBusinessActivity.this, "Failed to register, try again!", Toast.LENGTH_LONG).show();
+                            System.out.println("HOLA: " + task.getException());
+                            Toast.makeText(RegisterBusinessActivity.this, "Failed to register, try again!" + task.getException(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });

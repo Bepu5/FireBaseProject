@@ -43,8 +43,10 @@ public class ChangeEmail extends AppCompatActivity {
         userID = user.getUid();
 
         final EditText email = findViewById(R.id.emailReset);
+        String useremail = mAuth.getCurrentUser().getEmail();
 
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        email.setText(useremail);
+        /*reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
@@ -59,7 +61,7 @@ public class ChangeEmail extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
         mAuth = FirebaseAuth.getInstance();
 
