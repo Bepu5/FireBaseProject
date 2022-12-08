@@ -102,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(FirebaseAuth.getInstance().getCurrentUser().getUid(), username, email);
+                            User user = new User(FirebaseAuth.getInstance().getCurrentUser().getUid(), username, email, "");
                             FirebaseDatabase.getInstance("https://missatgeria-serveis-default-rtdb.europe-west1.firebasedatabase.app/").getReference()
                                     .child("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                                 user.sendEmailVerification();
                                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                             } else {
-                                                Toast.makeText(RegisterActivity.this, "Failed to register, try again!", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(RegisterActivity.this, "Failed to register, try again!"+ task.getException(), Toast.LENGTH_LONG).show();
                                             }
                                         }
                                     });

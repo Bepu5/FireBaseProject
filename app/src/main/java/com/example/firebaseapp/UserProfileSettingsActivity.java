@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -60,10 +63,18 @@ public class UserProfileSettingsActivity extends AppCompatActivity {
         save = findViewById(R.id.saveUsername);
         exit = findViewById(R.id.exitUsername);
 
+
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reference.child(userID).child("username").setValue(username.getText().toString());
+                Task initTask = reference.child(userID).child("username").setValue(username.getText().toString());
+                initTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Guillem" + e);
+                    }
+                });
                 Toast.makeText(UserProfileSettingsActivity.this, "Username changed successfully!", Toast.LENGTH_LONG).show();
                 finish();
             }

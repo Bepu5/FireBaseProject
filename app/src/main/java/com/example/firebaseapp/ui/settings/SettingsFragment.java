@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.firebaseapp.ProfileActivity;
 import com.example.firebaseapp.R;
 import com.example.firebaseapp.SettingsActivity;
@@ -69,13 +70,16 @@ public class SettingsFragment extends Fragment {
         userID = user.getUid();
 
         final TextView username = root.findViewById(R.id.userName);
+        final ImageView profilePicture = root.findViewById(R.id.profile_fragment);
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
                 if(userProfile != null){
+
                     String username2 = userProfile.username;
+                    Glide.with(getContext()).load(userProfile.profile_picture).error(R.drawable.prof_settings).placeholder(R.drawable.prof_settings).into(profilePicture);
 
                     username.setText(username2);
                 }
